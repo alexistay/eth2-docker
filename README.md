@@ -6,11 +6,11 @@ With defaults to run Nimbus, Lighthouse, Prysm and Teku nodes on spadina.
 
 **Nimbus Caveats**
 
-Nimbus requires geth to be synced before the beacon will start. You can
+Nimbus requires geth in archive mode and to be synced before the beacon will start. You can
 work around this by starting the entire "stack" with `sudo docker-compose up -d eth2`,
 and repeating that command when geth has caught up to the eth1 chain head.
 
-As of 9/27 noon EDT, Nimbus does not work with 3rd-party eth1 providers and spadina,
+As of 9/28, Nimbus does not work with 3rd-party eth1 providers and spadina,
 because it tries to use http:// even when https:// is specified. This may get resolved,
 test with the most recent release by rebuilding: `sudo docker-compose build --no-cache beacon`
 
@@ -27,15 +27,19 @@ binary images is a TODO, as long as it does not duplicate work
 by client teams.
 
 Currently supported clients:
-- Nimbus
 - Lighthouse
 - Prysm
 - Teku
+- Nimbus
 
 Currently supported optional components:
 - geth, local eth1 node. Use this or a 3rd-party provider of eth1 chain data to "feed"
   your eth2 beacon node, so you can "propose" blocks.
 - Grafana dashboard
+
+**Note**: As of 9/28/2020, Nimbus requires an "archive" source of eth1 chain data.
+This can be a local geth in archive mode, or a 3rd-party provider. Please see [SETUP](SETUP.md)
+for details.
 
 # USAGE
 
